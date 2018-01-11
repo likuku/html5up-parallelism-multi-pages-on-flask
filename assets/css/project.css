@@ -1,0 +1,86 @@
+#top_line .project_link li {
+    display: inline-block;
+    margin-left: 1em;
+    padding-left: 1em;
+    border-left: solid 1px #4a4a4a;
+    border-left-color: rgba(74, 74, 74, 0.85);
+    line-height: 1em;
+}
+#top_line .project_link li:first-child {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 1em;
+    word-spacing: 1em;
+    color: #4a4a4a;
+    color: rgba(74, 74, 74, 0.85);
+    font-size: 2em;
+    font-weight: 600
+}
+#top_line .project_link a{
+    color: #4a4a4a;
+    color: rgba(74, 74, 74, 0.85);
+    text-decoration: none;
+    -moz-transition: color 0.25s ease-in-out;
+    -webkit-transition: color 0.25s ease-in-out;
+    -ms-transition: color 0.25s ease-in-out;
+    transition: color 0.25s ease-in-out;
+}
+#top_line .project_link a:hover{
+    color: #d64760;
+}
+#top_line .item {
+    display: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    width: 0;
+    height: 0;
+    float: lift;
+    position: relative;
+    overflow: hidden;
+}
+body {
+    background-image: url("images/overlay.png"), -moz-linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("../../images/bg.jpg");
+    background-image: url("images/overlay.png"), -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("../../images/bg.jpg");
+    background-image: url("images/overlay.png"), -ms-linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("../../images/bg.jpg");
+    background-image: url("images/overlay.png"), linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("../../images/bg.jpg");
+    background-position: top left, bottom left, auto;
+    background-size: auto, 100% 100%, cover;
+    background-repeat: repeat, no-repeat, auto;
+    padding: 0;
+    font-size: 12pt;
+    line-height: 1.75em;
+    height: 100%;
+}
+/* Mobile */
+@media screen and (max-width: 736px) {
+    #top_line .project_link ul {
+    }
+    #top_line .project_link li:first-child {
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 1em;
+        word-spacing: 1em;
+        color: #fff;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1.3em;
+        font-weight: 600
+    }
+    #top_line .project_link a{
+        color: #fff;
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        -moz-transition: color 0.25s ease-in-out;
+        -webkit-transition: color 0.25s ease-in-out;
+        -ms-transition: color 0.25s ease-in-out;
+        transition: color 0.25s ease-in-out;
+    }
+    #top_line .project_link a:hover{
+        color: #d64760;
+    }
+    body {
+        /* 背景图固定，避免移动版相册元素过多背景不够用 */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+}
