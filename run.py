@@ -36,8 +36,7 @@ photos_project1 = [{'width':'200','href':'https://farm3.staticflickr.com/2839/12
                 {'width':'260','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/05.jpg'}]
 
 @app.route("/") # take note of this decorator syntax, it's a common pattern
-def hello():
-    #return "Hello World!"
+def index():
     return render_template('index.html',
                            logo = logo,
                            bg_img = bg_img,
@@ -48,7 +47,6 @@ def hello():
 
 @app.route("/project1") # take note of this decorator syntax, it's a common pattern
 def project():
-    #return "Hello World!"
     return render_template('project.html',
                            logo = logo,
                            bg_img = bg_img,
