@@ -7,9 +7,9 @@ logo = 'likuku'
 bg_img = 'https://wx4.sinaimg.cn/large/4d48a5a9gy1fn2e6ivc6oj21kw1fk1kx.jpg'
 img ='https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg'
 
-projects = [{'href':'project1','project_name':'project1'},
-            {'href':'#','project_name':'project2'},
-            {'href':'#','project_name':'project3'},
+projects = [{'href':'/project/id/1','project_name':'project1'},
+            {'href':'/project/id/2','project_name':'project2'},
+            {'href':'/project/id/3','project_name':'project3'},
             {'href':'#','project_name':'project4'}]
 
 contacts = [{'href':'#','class':'icon fa-twitter','label':'Twitter'},
@@ -30,10 +30,19 @@ photos_index = [{'width':'200','href':'https://farm3.staticflickr.com/2839/12237
                 {'width':'230','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/08.jpg'}]
 
 photos_project1 = [{'width':'200','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/01.jpg'},
-                {'width':'150','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/02.jpg'},
-                {'width':'230','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/03.jpg'},
-                {'width':'200','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/04.jpg'},
-                {'width':'260','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/05.jpg'}]
+                   {'width':'150','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/02.jpg'},
+                   {'width':'150','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/03.jpg'}]
+
+
+photos_project2 = [{'width':'200','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/02.jpg'},
+                   {'width':'150','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/03.jpg'},
+                   {'width':'260','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/04.jpg'}]
+
+photos_project3 = [{'width':'200','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/03.jpg'},
+                   {'width':'150','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/04.jpg'},
+                   {'width':'260','href':'https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','simg':'images/thumbs/05.jpg'}]
+
+projects_photos = {1:photos_project1,2:photos_project2,3:photos_project3}
 
 @app.route("/") # take note of this decorator syntax, it's a common pattern
 def index():
@@ -45,12 +54,12 @@ def index():
                            projects = projects
                            )
 
-@app.route("/project1") # take note of this decorator syntax, it's a common pattern
-def project():
+@app.route("/project/id/<int:project_id>") # take note of this decorator syntax, it's a common pattern
+def project(project_id):
     return render_template('project.html',
                            logo = logo,
                            bg_img = bg_img,
-                           photos = photos_project1,
+                           photos = projects_photos[project_id],
                            contacts = contacts,
                            projects = projects
                            )
