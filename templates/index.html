@@ -10,14 +10,55 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<!-- link rel="stylesheet" href="assets/css/main.css" / -->
 		<link rel="stylesheet" href={{ url_for('static', filename="assets/css/main.css") }} />
-		<!--noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript-->
 		<noscript><link rel="stylesheet" href={{ url_for('static', filename="assets/css/noscript.css") }} /></noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--link rel="stylesheet" href="assets/css/index.css" /-->
-		<link rel="stylesheet" href={{ url_for('static', filename="assets/css/index.css") }} />
+		<style>
+			#header {
+				position: relative;
+				background: transparent;
+				color: #fff;
+				cursor: default;
+			}
+			#header h1 {
+				color: #d64760
+			}
+			body {
+				background-image: url("{{ url_for('static', filename="assets/css/images/overlay.png") }}"), -moz-linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("{{ bg_img }}");
+				background-image: url("{{ url_for('static', filename="assets/css/images/overlay.png") }}"), -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("{{ bg_img }}");
+				background-image: url("{{ url_for('static', filename="assets/css/images/overlay.png") }}"), -ms-linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("{{ bg_img }}");
+				background-image: url("{{ url_for('static', filename="assets/css/images/overlay.png") }}"), linear-gradient(top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.65)), url("{{ bg_img }}");
+				background-position: top left, bottom left, auto;
+				background-size: auto, 100% 100%, cover;
+				background-repeat: repeat, no-repeat, auto;
+				padding: 0;
+				font-size: 12pt;
+				line-height: 1.75em;
+				height: 100%;
+			}
+			/* Mobile */
+			@media screen and (max-width: 736px) {
+				body {
+					background-image: url("{{ bg_img }}");
+					background-position: top left, bottom left, auto;
+					background-size: auto, 100% 100%, cover;
+					background-repeat: repeat, no-repeat, auto;
+					padding: 0;
+					font-size: 12pt;
+					line-height: 1.75em;
+					height: 100%;
+				}
+				#header {
+					position: relative;
+					color: #fff;
+					cursor: default;
+				}
+				#header h1 {
+					color: #d64760;
+				}
+			}
+		</style>
 	</head>
 	<body>
 
@@ -38,9 +79,8 @@
 
 					<!-- Thumb Items -->
 					<!-- Filler Thumb Items (just for demonstration purposes) -->
-					{% for i in loop %}
-						<article class="item thumb" data-width="360"><h2>Kingdom of the Wind</h2><a href="https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg" class="image"><img src="https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg" alt=""></a></article>
-						<article class="item thumb" data-width="{{i['w']}}"><h2>Kingdom of the Wind</h2><a href="images/fulls/05.jpg" class="image"><img src={{ url_for('static', filename=i['simg']) }} alt=""></a></article>
+					{% for item in photos %}
+						<article class="item thumb" data-width="{{ item.width }}"><h2>Kingdom of the Wind</h2><a href="{{ item.href }}" class="image"><img src={{ url_for('static', filename=item.simg) }} alt=""></a></article>
 						<!-- article class="item thumb" data-width="476"><h2>Kingdom of the Wind</h2><a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt=""></a></article -->
 					{% endfor %}
 				</div>
@@ -54,21 +94,16 @@
 					</ul>
 						<ul class="copyright">
 						<li style="font-size: 1.3em;font-weight: 600;">Projects :</li>
-						<li><a href="project1">project1</a></li>
-						<li><a href="#">project2</a></li>
-						<li><a href="#">project3</a></li>
-						<li><a href="#">project4</a></li>
+						{% for item in projects %}
+						<li><a href="{{ item.href }}">{{ item.project_name }}</a></li>
+						{% endfor %}
 						</ul>
 				</div>
 				<div class="right">
 					<ul class="contact">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-						<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-						<li><a href="#" class="icon fa-weixin"><span class="label">Wechat</span></a></li>
-						<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						{% for item in contacts %}
+						<li><a href="{{ item.href }}" class="{{ item.class }}"><span class="label">{{ item.label }}</span></a></li>
+						{% endfor %}
 					</ul>
 					<ul class="copyright">
 						<li>&copy; {{ logo }}</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
