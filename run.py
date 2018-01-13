@@ -98,6 +98,7 @@ projects_photos = {1:photos_project1,2:photos_project2}
 '''
 
 @app.route("/") # take note of this decorator syntax, it's a common pattern
+@app.route('/index')
 def index():
     _projects = get_projects()
     _settings = get_settings()
