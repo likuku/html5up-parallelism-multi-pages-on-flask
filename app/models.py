@@ -1,6 +1,22 @@
 from app import app
+from sqlalchemy import Column, Integer, String
+from app.database import Base
 import sqlite3
 
+class Setting(Base):
+    __tablename__ = 'setting'
+    id = Column(Integer, primary_key=True)
+    key = Column(String(50))
+    value = Column(String(255))
+
+    def __init__(self, key=None, value=None):
+        self.key = key
+        self.value = value
+
+    def __repr__(self):
+        return '<Setting (key="%s", value="%s")>' % (self.key, self.value)
+
+#####
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
@@ -21,10 +37,12 @@ def teardown_request(exception):
     g.db.close()
 
 def get_settings():
-    _cur = g.db.execute('SELECT value FROM setting WHERE key = "logo"')
-    _logo = [row[0] for row in _cur.fetchall()][0]
-    _cur = g.db.execute('SELECT value FROM setting WHERE key = "bg_img"')
-    _bg_img = [row[0] for row in _cur.fetchall()][0]
+    #_cur = g.db.execute('SELECT value FROM setting WHERE key = "logo"')
+    #_logo = [row[0] for row in _cur.fetchall()][0]
+    #_cur = g.db.execute('SELECT value FROM setting WHERE key = "bg_img"')
+    #_bg_img = [row[0] for row in _cur.fetchall()][0]
+    _logo = (Setting.query.filter(Setting.key == 'logo').first()).value
+    _bg_img = (Setting.query.filter(Setting.key == 'bg_img').first()).value
     _settings = {'logo':_logo, 'bg_img':_bg_img}
     return(_settings)
 
