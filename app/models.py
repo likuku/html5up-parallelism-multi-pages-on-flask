@@ -1,7 +1,6 @@
 from app import app
 from sqlalchemy import Column, Integer, String, ForeignKey
 from app.database import Base
-import sqlite3
 
 class Setting(Base):
     __tablename__ = 'setting'
@@ -74,6 +73,7 @@ class Projects_Photos(Base):
             self.project_id,self.photo_id)
 
 #####
+import sqlite3
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
@@ -108,11 +108,8 @@ def get_projects():
     return([dict(href='/project/id/' + str(row[0]),project_name=row[1]) for row in _cur.fetchall()])
 
 def get_contacts():
-    _cur = g.db.execute('SELECT href,class,label FROM contact ORDER BY id ASC')
-    _contacts = []
-    for row in _cur.fetchall():
-        _contacts.append({'href':row[0],'class':row[1],'label':row[2]})
-    return(_contacts)
+    _cur = g.db.execute('SELECT href,class_name,label FROM contact ORDER BY id ASC')
+    return([dict(href=row[0],class_name=row[1],label=row[2]) for row in _cur.fetchall()])
 
 def get_photos_index():
     _cur = g.db.execute('SELECT href,width,src FROM photo ORDER BY id ASC')

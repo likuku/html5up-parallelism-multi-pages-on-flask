@@ -2,7 +2,7 @@ from flask import render_template
 from app import app
 from app.models import *
 
-#init_db()
+init_db()
 
 @app.route("/") # take note of this decorator syntax, it's a common pattern
 @app.route('/index')
