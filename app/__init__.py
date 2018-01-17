@@ -6,7 +6,7 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
 app.config.from_pyfile('config.py')
 
-from app import routes, models
+from app import routes, models, admin
 
 '''
 projects = [{'href':'/project/id/1','project_name':'project1'},

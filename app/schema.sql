@@ -10,13 +10,18 @@ create table contact (
   id integer primary key autoincrement,
   href string not null,
   class_name string not null,
-  label string
+  label string,
+  example string,
+  display string default 'Yes',
+  check (display = 'Yes' or display = 'No' )
 );
 
 drop table if exists project;
 create table project (
   id integer primary key autoincrement,
-  name string not null
+  name string not null,uniq,
+  display string default 'Yes',
+  check (display = 'Yes' or display = 'No' )
 );
 
 drop table if exists photo;
@@ -24,25 +29,31 @@ create table photo (
   id integer primary key autoincrement,
   href string not null,
   src string not null,
-  width integer not null
+  width integer not null,
+  project_id integer,
+  show_on_homepage string default 'Yes',
+  display string default 'Yes',
+  check (show_on_homepage = 'Yes' or show_on_homepage = 'No'),
+  check (display = 'Yes' or display = 'No')
 );
 
 drop table if exists projects_photos;
 create table projects_photos (
   project_id integer not null,
-  photo_id integer not null
+  photo_id integer not null,
+  primary key (project_id, photo_id)
 );
 
 insert into setting (key, value) values ('logo', 'likuku');
 insert into setting (key, value) values ('bg_img', 'https://wx4.sinaimg.cn/large/4d48a5a9gy1fn2e6ivc6oj21kw1fk1kx.jpg');
 
-insert into contact (href, class_name, label) values ('#','icon fa-twitter','Twitter');
+insert into contact (href, class_name, label, example) values ('#','icon fa-twitter','Twitter','https://twitter.com/someone');
 insert into contact (href, class_name, label) values ('#','icon fa-instagram','Instagram');
 insert into contact (href, class_name, label) values ('#','icon fa-facebook','Facebook');
 insert into contact (href, class_name, label) values ('#','icon fa-dribbble','Dribbble');
 insert into contact (href, class_name, label) values ('#','icon fa-pinterest','Pinterest');
 insert into contact (href, class_name, label) values ('#','icon fa-weixin','Wechat');
-insert into contact (href, class_name, label) values ('#','icon fa-envelope','Email');
+insert into contact (href, class_name, label, example) values ('#','icon fa-envelope','Email','mailto:someone@domain.name');
 
 insert into project (name) values ('Girls');
 insert into project (name) values ('People');
