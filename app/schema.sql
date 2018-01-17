@@ -55,9 +55,9 @@ insert into contact (href, class_name, label) values ('#','icon fa-pinterest','P
 insert into contact (href, class_name, label) values ('#','icon fa-weixin','Wechat');
 insert into contact (href, class_name, label, example) values ('#','icon fa-envelope','Email','mailto:someone@domain.name');
 
-insert into project (name) values ('Girls');
-insert into project (name) values ('People');
-insert into project (name) values ('Times');
+insert into project (name) values ('Sun');
+insert into project (name) values ('Luna');
+insert into project (name) values ('Mars');
 
 insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/01.jpg','230');
 insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/02.jpg','230');
