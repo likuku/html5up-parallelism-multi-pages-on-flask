@@ -87,7 +87,7 @@ class Photo(Base):
 
     def __init__(self, href=None, width=None, src=None, project_id=None):
         self.href = href
-        self.width = value
+        self.width = width
         self.src = src
         self.project_id = project_id
 
