@@ -81,15 +81,18 @@ class Photo(Base):
     width = Column(Integer, nullable=False)
     src = Column(String, nullable=False, unique=True)
     project_id = Column(Integer)
+    description = Column(String)
     show_on_homepage = Column(String, nullable=False, default='Yes')
     display = Column(String, nullable=False, default='Yes')
     #projects = relationship('Projects_Photos', back_populates='photo')
 
-    def __init__(self, href=None, width=None, src=None, project_id=None):
+    def __init__(self, href=None, width=None, src=None,
+                 project_id=None, description=None):
         self.href = href
         self.width = width
         self.src = src
         self.project_id = project_id
+        self.description = description
 
     def __repr__(self):
         return '<Photo (id="%d", href="%r", width="%r", src="%r", display="%r")>' % (
@@ -137,14 +140,14 @@ def get_contacts():
     return([dict(href=row[0],class_name=row[1],label=row[2]) for row in _cur.fetchall()])
 
 def get_photos_index():
-    _cur = g.db.execute('SELECT href,width,src FROM photo ORDER BY id ASC')
-    return([dict(href=row[0],width=row[1],simg=row[2]) for row in _cur.fetchall()])
+    _cur = g.db.execute('SELECT href,width,src,description FROM photo ORDER BY id ASC')
+    return([dict(href=row[0],width=row[1],simg=row[2],description=row[3]) for row in _cur.fetchall()])
 
 def get_photos_project(_project_id):
     #_sql = 'SELECT photo.href,photo.width,photo.src FROM photo WHERE \
     #    photo.id IN (select projects_photos.photo_id from projects_photos WHERE \
     #    projects_photos.project_id = %d) ORDER BY photo.id ASC' % _project_id
-    _sql = 'SELECT photo.href,photo.width,photo.src FROM photo WHERE \
-        project_id = %d ORDER BY photo.id ASC' % _project_id
+    _sql = 'SELECT href,width,src,description FROM photo WHERE \
+        project_id = %d ORDER BY id ASC' % _project_id
     _cur = g.db.execute(_sql)
-    return([dict(href=row[0],width=row[1],simg=row[2]) for row in _cur.fetchall()])
+    return([dict(href=row[0],width=row[1],simg=row[2],description=row[3]) for row in _cur.fetchall()])

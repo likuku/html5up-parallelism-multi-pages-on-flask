@@ -47,7 +47,7 @@ class ModelViewProjectsPhotos(ModeViewWithDisplay):
 
 class ModelViewPhoto(ModeViewWithDisplay):
     can_edit = True
-    column_editable_list = ['width','project_id','show_on_homepage','display']
+    column_editable_list = ['width','description','project_id','show_on_homepage','display']
     #can_view_details = True
 
 from app.database import db_session

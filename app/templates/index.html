@@ -79,9 +79,13 @@
 
 					<!-- Thumb Items -->
 					<!-- Filler Thumb Items (just for demonstration purposes) -->
+					<!-- article class="item thumb" data-width="476"><h2>Kingdom of the Wind</h2><a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt=""></a></article -->
 					{% for item in photos %}
-						<article class="item thumb" data-width="{{ item.width }}"><h2>Description</h2><a href="{{ item.href }}" class="image"><img src="{{ item.simg }}" alt=""></a></article>
-						<!-- article class="item thumb" data-width="476"><h2>Kingdom of the Wind</h2><a href="images/fulls/05.jpg" class="image"><img src="images/thumbs/05.jpg" alt=""></a></article -->
+						{% if item.description == None %}
+							<article class="item thumb" data-width="{{ item.width }}"><h2></h2><a href="{{ item.href }}" class="image"><img src="{{ item.simg }}" alt=""></a></article>
+						{% else %}
+							<article class="item thumb" data-width="{{ item.width }}"><h2>{{ item.description }}</h2><a href="{{ item.href }}" class="image"><img src="{{ item.simg }}" alt=""></a></article>
+						{% endif %}
 					{% endfor %}
 				</div>
 			</div>
