@@ -59,14 +59,14 @@ insert into project (name) values ('Sun');
 insert into project (name) values ('Luna');
 insert into project (name) values ('Mars');
 
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/01.jpg','230');
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/02.jpg','230');
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/03.jpg','230');
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/04.jpg','230');
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/05.jpg','230');
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/06.jpg','230');
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/07.jpg','230');
-insert into photo (href, src, width) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','images/thumbs/08.jpg','230');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','1');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','1');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','1');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','1');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','2');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','2');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','3');
+insert into photo (href, src, width, project_id) values ('https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_z.jpg','https://farm3.staticflickr.com/2839/12237482636_d71fbbda2a_n.jpg','279','3');
 
 insert into projects_photos (project_id, photo_id) values (1,1);
 insert into projects_photos (project_id, photo_id) values (1,2);

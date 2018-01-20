@@ -46,8 +46,8 @@ class ModelViewProjectsPhotos(ModeViewWithDisplay):
     #column_formatters = dict(mps=lambda v, c, m, p: (m.project_photo_name_str))
 
 class ModelViewPhoto(ModeViewWithDisplay):
-    can_edit = False
-    column_editable_list = ['project_id','show_on_homepage','display']
+    can_edit = True
+    column_editable_list = ['width','project_id','show_on_homepage','display']
     #can_view_details = True
 
 from app.database import db_session
