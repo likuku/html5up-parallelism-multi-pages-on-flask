@@ -4,7 +4,6 @@ from flask import Flask
 from flask_admin import Admin
 from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla import ModelView
-#from app.models import *
 
 admin = Admin(app, name='Admin', template_mode='bootstrap3')
 # Add administrative views here
@@ -67,6 +66,17 @@ class ModelViewPhoto(ModeViewWithDisplay):
                          project_id='Project',
                          show_on_homepage='HomePage')
     #can_view_details = True
+    # better choices for project_id:
+    project_id_list_raw = Project.query.all()
+    if project_id_list_raw is not None:
+        _list = []
+        for _project in project_id_list_raw:
+            _list.append((str(_project.id),_project.name))
+        form_choices = {
+        'project_id': _list
+        }
+    else:
+        pass
 
 from app.database import db_session
 admin.add_view(ModelViewSetting(Setting, db_session))
