@@ -19,7 +19,7 @@ create table contact (
 drop table if exists project;
 create table project (
   id integer primary key autoincrement,
-  name string not null,uniq,
+  name string not null unique,
   display string default 'Yes',
   check (display = 'Yes' or display = 'No' )
 );
@@ -27,8 +27,8 @@ create table project (
 drop table if exists photo;
 create table photo (
   id integer primary key autoincrement,
-  href string not null,
-  src string not null,
+  href string not null unique,
+  src string not null unique,
   width integer not null,
   project_id integer,
   description string,
