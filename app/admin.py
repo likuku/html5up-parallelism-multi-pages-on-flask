@@ -33,6 +33,7 @@ class ModelViewSetting(ModelViewOnlyEdit):
 class ModelViewContact(ModelViewOnlyEdit):
     column_exclude_list = ['class_name' ]
     column_editable_list = ['href','display']
+    column_labels = dict(href='Link')
 
 class ModelViewProject(ModeViewWithDisplay):
     can_edit = False
@@ -47,7 +48,24 @@ class ModelViewProjectsPhotos(ModeViewWithDisplay):
 
 class ModelViewPhoto(ModeViewWithDisplay):
     can_edit = True
-    column_editable_list = ['width','description','project_id','show_on_homepage','display']
+    column_list = ('display',
+                   'show_on_homepage',
+                   'project_id',
+                   'description',
+                   'href',
+                   'src',
+                   'width')
+    column_editable_list = ['width',
+                            'description',
+                            'project_id',
+                            'show_on_homepage',
+                            'display']
+    column_labels = dict(href='BigImage',
+                         src='Icon',
+                         width='IconWidth',
+                         description='Title',
+                         project_id='Project',
+                         show_on_homepage='HomePage')
     #can_view_details = True
 
 from app.database import db_session

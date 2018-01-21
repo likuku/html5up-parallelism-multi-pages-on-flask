@@ -78,19 +78,19 @@ class Photo(Base):
     __tablename__ = 'photo'
     id = Column(Integer, primary_key=True)
     href = Column(String, nullable=False, unique=True)
-    width = Column(Integer, nullable=False)
     src = Column(String, nullable=False, unique=True)
+    width = Column(Integer, nullable=False, default='228')
     project_id = Column(Integer)
     description = Column(String)
     show_on_homepage = Column(String, nullable=False, default='Yes')
     display = Column(String, nullable=False, default='Yes')
     #projects = relationship('Projects_Photos', back_populates='photo')
 
-    def __init__(self, href=None, width=None, src=None,
+    def __init__(self, href=None, src=None, width=None,
                  project_id=None, description=None):
         self.href = href
-        self.width = width
         self.src = src
+        self.width = width
         self.project_id = project_id
         self.description = description
 
