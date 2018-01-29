@@ -5,13 +5,26 @@ from flask_admin import Admin
 from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 
+from flask_login import current_user, login_user, logout_user, LoginManager
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
+login_manager.login_message = "Please login to access this page."
+login_manager.login_message_category = "info"
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return app.config['USERNAME'].encode('utf-8')
+
 admin = Admin(app, name='Admin', template_mode='bootstrap3')
 # Add administrative views here
 
-#class CustomModelView(ModelView):
-#    """View function of Flask-Admin for Models page."""
-#    pass
-class ModeViewWithDisplay(ModelView):
+class MyModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+class ModeViewWithDisplay(MyModelView):
     form_choices = {
     'display': [
         ('Yes', 'Yes'),
